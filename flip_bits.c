@@ -97,7 +97,7 @@ STATUS_CODE set_bit(uint8_t *data, uint8_t byte_length, uint8_t bit_offset)
  */
 STATUS_CODE clear_bit(uint8_t *data, uint8_t byte_length, uint8_t bit_offset)
 {
-    //Determine which byte and bit we want to set 
+    //Determine which byte and bit we want to clear 
     uint8_t which_byte = bit_offset / BITS_IN_A_BYTE;
     uint8_t which_bit = bit_offset % BITS_IN_A_BYTE;
 
@@ -108,7 +108,7 @@ STATUS_CODE clear_bit(uint8_t *data, uint8_t byte_length, uint8_t bit_offset)
     }
     else
     {
-        //set bit, return success
+        //clear bit, return success
         data[which_byte] = data[which_byte] & ~(1<<which_bit);
         return STATUS_SUCCESS;
     }
