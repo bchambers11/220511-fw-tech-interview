@@ -39,7 +39,24 @@ void print_bits(void const * const ptr, size_t const size) {
  * @param result - binary value to store the result
  * @return STATUS_CODE - STATUS_SUCCESS if request okay, STATUS_ERROR if out of bounds request
  */
-// TODO: define get_bit function
+STATUS_CODE get_bit(uint8_t *data, uint8_t byte_length, uint8_t bit_offset, bool *result)
+{
+    //Determine which byte and bit we want to get 
+    uint8_t which_byte = bit_offset / BITS_IN_A_BYTE;
+    uint8_t which_bit = bit_offset % BITS_IN_A_BYTE;
+
+    if(which_byte > byte_length-1)
+    {
+        //out of range, return error 
+        return STATUS_ERROR;
+    }
+    else
+    {
+        //get bit, return success
+        *result = data[which_byte] & (1<<which_bit);
+        return STATUS_SUCCESS;
+    }
+}
 
 /**
  * @brief Sets the bit at the given offset to 1.
@@ -50,7 +67,24 @@ void print_bits(void const * const ptr, size_t const size) {
  * @param bit_offset - the offset of the bit to set (0 is lsb)
  * @return STATUS_CODE - STATUS_SUCCESS if request okay, STATUS_ERROR if out of bounds request
  */
-// TODO: define set_bit function
+STATUS_CODE set_bit(uint8_t *data, uint8_t byte_length, uint8_t bit_offset)
+{
+    //Determine which byte and bit we want to set 
+    uint8_t which_byte = bit_offset / BITS_IN_A_BYTE;
+    uint8_t which_bit = bit_offset % BITS_IN_A_BYTE;
+
+    if(which_byte > byte_length-1)
+    {
+        //out of range, return error 
+        return STATUS_ERROR;
+    }
+    else
+    {
+        //set bit, return success
+        data[which_byte] = data[which_byte] | (1<<which_bit);
+        return STATUS_SUCCESS;
+    }
+}
 
 /**
  * @brief Sets the bit at the given offset to 0.
@@ -61,7 +95,24 @@ void print_bits(void const * const ptr, size_t const size) {
  * @param bit_offset - the offset of the bit to clear (0 is lsb)
  * @return STATUS_CODE - STATUS_SUCCESS if request okay, STATUS_ERROR if out of bounds request
  */
-// TODO: define clear_bit function
+STATUS_CODE clear_bit(uint8_t *data, uint8_t byte_length, uint8_t bit_offset)
+{
+    //Determine which byte and bit we want to set 
+    uint8_t which_byte = bit_offset / BITS_IN_A_BYTE;
+    uint8_t which_bit = bit_offset % BITS_IN_A_BYTE;
+
+    if(which_byte > byte_length-1)
+    {
+        //out of range, return error 
+        return STATUS_ERROR;
+    }
+    else
+    {
+        //set bit, return success
+        data[which_byte] = data[which_byte] & ~(1<<which_bit);
+        return STATUS_SUCCESS;
+    }
+}
 
 void get_bit_test() {
   uint8_t pass = 0;
