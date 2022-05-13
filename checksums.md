@@ -1,0 +1,3 @@
+**What are checksums and what are they useful for?**
+
+Checksums are a small amount of data transmitted with digital communications that are used by the receiving side to verify the data was transferred properly. The transmit side will calculate the checksum based on the data message and usually append it to the end of the message. The receive side will perform the same calculation on the data message. If the checksums match, then the data was received properly, but if they don't it means the data was corrupted during transmission. This is useful because it lets you know if you can trust the data you received or not. There are various algorithms to calculate the checksum, but as long as both sides use the same algorithm it will work.
